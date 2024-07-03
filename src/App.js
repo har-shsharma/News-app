@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Navbar from './components/Navbar.js'
+import News from './components/News.js'
+import {
+  createBrowserRouter,
+  RouterProvider
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  pageSize=9;
+  render() {
+    const router = createBrowserRouter([
+      { path: "/", element: <><Navbar /><News key="general" country='in' pageSize={this.pageSize} category='general' /></> },
+      { path: "/entertainment", element: <><Navbar /><News key="entertainment" country='in' pageSize={this.pageSize} category='entertainment' /></> },
+      { path: "/business", element: <><Navbar /><News key="business" country='in' pageSize={this.pageSize} category='business' /></> },
+      { path: "/sports", element: <><Navbar /><News key="sports" country='in' pageSize={this.pageSize} category='sports' /></> },
+      { path: "/science", element: <><Navbar /><News key="science" country='in' pageSize={this.pageSize} category='science' /></> },
+      { path: "/technology", element: <><Navbar /><News key="technology" country='in' pageSize={this.pageSize} category='technology' /></> },
+      { path: "/health", element: <><Navbar /><News key="health" country='in' pageSize={this.pageSize} category='health' /></> }
+
+    ])
+    return (
+      <div>
+        <RouterProvider router={router} />
+      </div>
+    )
+  }
 }
-
-export default App;
